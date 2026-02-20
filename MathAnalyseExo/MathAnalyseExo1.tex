@@ -1,0 +1,63 @@
+\documentclass[12pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{fancyhdr}
+
+\usepackage{amsmath} % caligraphiques
+\usepackage{amssymb} % les symboles R, N 
+\usepackage{mathrsfs} % fancy script font
+\usepackage{mathptmx} % polices
+\usepackage{fancybox} %encadrer les formules
+\usepackage{tikz,tkz-tab} % tableaux de signe
+\usepackage{setspace} % mise en page
+\usepackage{stmaryrd}
+\usepackage[top=2cm, bottom=2cm, left=1cm, right=1cm]{geometry}
+
+\newcommand{\p}[1][6]{\\[#1pt]}
+\newcommand{\pt}[1]{\\[#1pt]}
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\setlength{\parindent}{0 pt} 
+
+\pagestyle{empty}
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[CO,LE]{\textbf{Math Analyse Exo1 Equivalent de suites}}
+\fancyfoot{} % clear all footer fields
+
+\begin{document}
+Soit  $(a_n)$ et $(b_n)$ deux suites réelles, montrer que
+\[e^{a_n} \sim \left (1+\dfrac{a_n}{n}\right )^n \iff a_n=o(\sqrt{n})\]
+\newpage
+Tout d'abord, nous pouvons remarquer que, pour deux suites $(a_n)$ et $(b_n)$\p
+$e^{an}\sim e^{b_n} \iff \dfrac{e^{a_n}}{e^{b_n}}\rightarrow 1 \iff e^{(a_n-b_n)} \rightarrow 1 \iff a_n-b_n \rightarrow 0$\p
+Si $a_n=o(\sqrt{n})$, alors $\dfrac{a_n}{n}=o(\dfrac1{\sqrt{n}})$ et nous pouvons faire un développement limité
+\begin{align*}
+	a_n-n\ln(1+\dfrac{a_n}{n})&=a_n-n\left (\frac{a_n}{n}-\dfrac{a^2_n}{2n^2} +o(1/n)\right ) \\		a_n-n\ln(1+\dfrac{a_n}{n})&=a_n-a_n+\dfrac{a_n^2}{2n}+o(1) \\
+	a_n-n\ln(1+\dfrac{a_n}{n})&=\dfrac{a_n^2}{2n}+o(1) 
+\end{align*}
+Et comme $\displaystyle \lim_{n \rightarrow + \infty} \dfrac{a_n^2}{2n}=0$, en utilisant le résultat décrit en introduction
+\[\boxed{e^{a_n} \sim \left (1+\dfrac{a_n}{n}\right )^n} \]
+Pour la réciproque, supposons que 
+\[e^{a_n} \sim \left (1+\dfrac{a_n}{n}\right )^n\]
+Ce qui est équivalent à 
+\[ a_n-n\ln(1+\frac{a_n}{n})\rightarrow 0 \]
+Supposons que la suite $(\dfrac{a_n}{n})$ ne tende pas vers $0$, alors\p
+$(\exists \epsilon >0) \ (\forall n_0 \in \N) \ (n \geq n_0)=> (|\dfrac{a_n}{n}|\geq\epsilon)$\p
+Si nous notons $f$ la fonction qui à $x$ associe $f(x)=x-\ln(1+x)$, $f(x)=0 \iff x=0$ et donc $\dfrac{a_n}{n}-\ln(1+\dfrac{a_n}{n})$ ne peut pas tendre vers $0$.\p
+$(\exists \epsilon >0) \ (\forall n_0 \in \N) \ (n \geq n_0)=> (|f(\dfrac{a_n}{n})|\geq\epsilon>0)$\p
+et alors $n\left (\dfrac{a_n}{n}-\ln(1+\dfrac{a_n}{n})\right )$ ne peut pas tendre vers $0$, ce qui contredit l'hypothèse.\p
+Nous venons de démontrer par l'absurde que $\dfrac{a_n}{n}\rightarrow 0$ et donc nous pouvons faire le développement limité.
+
+	\[a_n-n\ln(1+\dfrac{a_n}{n})=\dfrac{a_n^2}{2n} +o(1)\]
+
+Donc forcément, $\dfrac{a_n^2}{n} \rightarrow 0 \iff a_n=o(\sqrt{n})$, d'où le résultat.\p
+
+\end{document}
+ 
